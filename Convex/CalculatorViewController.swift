@@ -90,12 +90,23 @@ class CalculatorViewController: UIViewController {
 		let numberButtonFont = UIFont.systemFontOfSize(numberButtonFontSize, weight: UIFontWeightThin)
 		let converterButtonFont = UIFont.systemFontOfSize(converterButtonFontSize, weight: UIFontWeightLight)
 		let operationButtonFont = UIFont.systemFontOfSize(operationButtonFontSize, weight: UIFontWeightLight)
-		let numberLabelFont = UIFont.systemFontOfSize(numberLabelFontSize, weight: UIFontWeightUltraLight)
-		let bitIndicatorFont = UIFont.systemFontOfSize(binaryTopLabel.font.capHeight, weight: UIFontWeightRegular)
+		let numberLabelFont: UIFont
+		let binaryLabelFont: UIFont
+		let bitIndicatorFont: UIFont
+		if #available(iOS 9.0, *) {
+			numberLabelFont = UIFont.monospacedDigitSystemFontOfSize(numberLabelFontSize, weight: UIFontWeightUltraLight)
+			binaryLabelFont = UIFont.monospacedDigitSystemFontOfSize(20, weight: UIFontWeightRegular)
+			bitIndicatorFont = UIFont.monospacedDigitSystemFontOfSize(12, weight: UIFontWeightRegular)
+		} else {
+			numberLabelFont = UIFont.systemFontOfSize(numberLabelFontSize, weight: UIFontWeightUltraLight)
+			binaryLabelFont = UIFont.systemFontOfSize(20, weight: UIFontWeightUltraLight)
+			bitIndicatorFont = UIFont.systemFontOfSize(binaryTopLabel.font.capHeight, weight: UIFontWeightRegular)
+		}
 		
 		// Adjust the font sizes.
 		numberLabel.font = numberLabelFont
-		numberLabel.adjustsFontSizeToFitWidth = true
+		binaryTopLabel.font = binaryLabelFont
+		binaryBottomLabel.font = binaryLabelFont
 		for button in hexButtons {
 			button.titleLabel!.font = numberButtonFont
 		}
@@ -118,7 +129,7 @@ class CalculatorViewController: UIViewController {
 		return true
 	}
 	
-	override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent) {
+	override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
 		if motion == .MotionShake {
 			clearNumber()
 		}
@@ -169,7 +180,7 @@ class CalculatorViewController: UIViewController {
 	func addSpaceEveryFourBits(binaryString: String) -> String {
 		var formattedString = String()
 		
-		for (index, character) in enumerate(binaryString) {
+		for (index, character) in binaryString.characters.enumerate() {
 			if index % 4 == 0 && index > 0 {
 				formattedString.append(Character(" "))
 			}
@@ -183,7 +194,7 @@ class CalculatorViewController: UIViewController {
 	func padBinaryString(binaryString: String, toSize: Int) -> String {
 		var padded = binaryString
 		
-		for i in 0..<toSize - count(binaryString) {
+		for _ in 0..<toSize - binaryString.characters.count {
 			padded = "0" + padded
 		}
 		
@@ -211,9 +222,11 @@ class CalculatorViewController: UIViewController {
 	// MARK: IBActions
 	
 	@IBAction func handleDoubleTap(recognizer: UITapGestureRecognizer) {
-		if let view = recognizer.view {
-			copyNumber()
-		}
+		copyNumber()
+	}
+	
+	@IBAction func handleSwipe(recognizer: UISwipeGestureRecognizer) {
+		clearNumber()
 	}
 	
 	@IBAction func twosComplement() {
@@ -288,11 +301,11 @@ class CalculatorViewController: UIViewController {
 	var displayValue: UInt {
 		get {
 			// Remove commas from the number just in case it's a formatted decimal number.
-			var number = numberLabel.text!.stringByReplacingOccurrencesOfString(",", withString: "", options: nil, range: nil)
+			var number = numberLabel.text!.stringByReplacingOccurrencesOfString(",", withString: "", options: [], range: nil)
 			
 			if displayType == "bin" {
 				// Remove spaces from the number.
-				number = binaryTopLabel.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: nil, range: nil) + binaryBottomLabel.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: nil, range: nil)
+				number = binaryTopLabel.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil) + binaryBottomLabel.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil)
 			}
 			
 			return UInt(strtoul(number, nil, Int32(radixValue[displayType]!)))
@@ -307,9 +320,9 @@ class CalculatorViewController: UIViewController {
 				var formattedDecimalString = String()
 				
 				// Formatting the decimal string manually because NSNumberFormatter is displaying two's complement as a negative number.
-				let firstCommaIndex = count(decimalString) % 3
-				for (index, character) in enumerate(decimalString) {
-					if count(decimalString) > 3 {
+				let firstCommaIndex = decimalString.characters.count % 3
+				for (index, character) in decimalString.characters.enumerate() {
+					if decimalString.characters.count > 3 {
 						if (index == firstCommaIndex || (index - firstCommaIndex) % 3 == 0) && index > 0 {
 							formattedDecimalString.append(Character(","))
 						}
@@ -329,7 +342,7 @@ class CalculatorViewController: UIViewController {
 				var formattedUpperString = String()
 				
 				// Pad the string with zeroes.
-				for i in 0..<calculatorBrain.cpuRegisterSize - count(binaryString) {
+				for _ in 0..<calculatorBrain.cpuRegisterSize - binaryString.characters.count {
 					binaryString = "0" + binaryString
 				}
 				

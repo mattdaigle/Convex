@@ -12,22 +12,22 @@ let radixValue: [String:UInt] = ["bin":2, "oct":8, "dec":10, "hex":16]
 
 class CalculatorModel: NSObject {
 	
-	let cpuRegisterSize = count(String(UInt.max, radix: 2))
+	let cpuRegisterSize = String(UInt.max, radix: 2).characters.count
 	
 	func flipBytes(var value: UInt) -> UInt {
 		if value > 0 {
 			// Determine how many bytes the number is.
 			let zero: Character = "0"
 			let currentNumberAsBinary = String(value, radix: 2)
-			let currentNumberBitCount = count(currentNumberAsBinary)
+			let currentNumberBitCount = currentNumberAsBinary.characters.count
 			var bitPaddingCount = 8 - currentNumberBitCount % 8
 			if bitPaddingCount == 8 {
 				bitPaddingCount = 0
 			}
 			let bitPadding = String(count: bitPaddingCount, repeatedValue: zero)
 			let paddedNumberAsBinary = bitPadding + currentNumberAsBinary
-			let paddedNumberByteCount = UInt(count(paddedNumberAsBinary)/8)
-			var rightShiftCount = UInt(cpuRegisterSize) - UInt(paddedNumberByteCount * 8)
+			let paddedNumberByteCount = UInt(paddedNumberAsBinary.characters.count/8)
+			let rightShiftCount = UInt(cpuRegisterSize) - UInt(paddedNumberByteCount * 8)
 			
 			if(paddedNumberByteCount > 1) {
 				value = value.byteSwapped >> rightShiftCount
