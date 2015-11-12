@@ -2,3 +2,9 @@ ios_distribution.cer
 Convex_1_0_1_screenshots
 CertificateSigningRequest.certSigningRequest
 Convex_Distribution_Profile.mobileprovision
+*.swp
+*~.nib
+build/
+*.pbxuser
+*.perspective
+*.perspectivev3

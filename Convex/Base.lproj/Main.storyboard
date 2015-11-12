@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -325,12 +325,10 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="v4f-LE-Fgd" appends="YES" id="N6w-do-M2y"/>
-                                                </connections>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="uwY-7q-uT5" firstAttribute="leading" secondItem="5tK-hs-4Kx" secondAttribute="trailing" multiplier="0.5" id="3dR-SX-LLK"/>
                                             <constraint firstItem="dty-39-F5z" firstAttribute="top" secondItem="nry-Rl-xzX" secondAttribute="bottom" id="Csp-5R-DbQ"/>
@@ -343,7 +341,8 @@
                                             <constraint firstItem="nry-Rl-xzX" firstAttribute="leading" secondItem="kCN-co-CnL" secondAttribute="leading" id="yvA-NQ-dww"/>
                                         </constraints>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="jgd-l9-yfl" appends="YES" id="l34-qU-8vr"/>
+                                            <outletCollection property="gestureRecognizers" destination="oWa-if-Bie" appends="YES" id="7Q7-dc-ppB"/>
+                                            <outletCollection property="gestureRecognizers" destination="wIg-Y3-sDz" appends="YES" id="GyY-H2-vq6"/>
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQQ-22-8jM" userLabel="BinaryLowerView">
@@ -372,12 +371,10 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="v4f-LE-Fgd" appends="YES" id="jHY-9l-m1J"/>
-                                                </connections>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="poq-qF-g26" firstAttribute="trailing" secondItem="vSm-1N-VlE" secondAttribute="trailing" constant="4" id="UV2-9s-idy"/>
                                             <constraint firstItem="poq-qF-g26" firstAttribute="leading" secondItem="fQQ-22-8jM" secondAttribute="leadingMargin" id="f6C-IG-Fkw"/>
@@ -390,7 +387,8 @@
                                             <constraint firstItem="2QX-fq-dg6" firstAttribute="leading" secondItem="fQQ-22-8jM" secondAttribute="trailing" multiplier="0.5" id="yF9-5A-lD6"/>
                                         </constraints>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="jgd-l9-yfl" appends="YES" id="PWv-Yb-g46"/>
+                                            <outletCollection property="gestureRecognizers" destination="dMK-37-iCE" appends="YES" id="EeJ-lp-DGX"/>
+                                            <outletCollection property="gestureRecognizers" destination="jKB-JO-qze" appends="YES" id="odu-cn-5lv"/>
                                         </connections>
                                     </view>
                                 </subviews>
@@ -587,9 +585,29 @@
                         <action selector="handleDoubleTap:" destination="BYZ-38-t0r" id="edb-9k-ysF"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="wIg-Y3-sDz">
+                    <connections>
+                        <action selector="handleDoubleTap:" destination="BYZ-38-t0r" id="HJ6-JJ-1in"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="jKB-JO-qze">
+                    <connections>
+                        <action selector="handleDoubleTap:" destination="BYZ-38-t0r" id="cbb-dy-lpT"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="right" id="v4f-LE-Fgd">
                     <connections>
                         <action selector="handleSwipe:" destination="BYZ-38-t0r" id="wak-rc-2SV"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="dMK-37-iCE">
+                    <connections>
+                        <action selector="handleSwipe:" destination="BYZ-38-t0r" id="F14-PQ-ONo"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="oWa-if-Bie">
+                    <connections>
+                        <action selector="handleSwipe:" destination="BYZ-38-t0r" id="dJh-ja-FcD"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

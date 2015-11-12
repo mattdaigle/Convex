@@ -222,11 +222,15 @@ class CalculatorViewController: UIViewController {
 	// MARK: IBActions
 	
 	@IBAction func handleDoubleTap(recognizer: UITapGestureRecognizer) {
-		copyNumber()
+		if recognizer.state == .Ended {
+			copyNumber()
+		}
 	}
 	
 	@IBAction func handleSwipe(recognizer: UISwipeGestureRecognizer) {
-		clearNumber()
+		if recognizer.state == .Ended {
+			clearNumber()
+		}
 	}
 	
 	@IBAction func twosComplement() {
@@ -316,7 +320,7 @@ class CalculatorViewController: UIViewController {
 			case "hex":
 				numberLabel.text = "0x" + String(newValue, radix: 16, uppercase: true)
 			case "dec":
-				var decimalString = String(newValue, radix: 10)
+				let decimalString = String(newValue, radix: 10)
 				var formattedDecimalString = String()
 				
 				// Formatting the decimal string manually because NSNumberFormatter is displaying two's complement as a negative number.
@@ -350,8 +354,8 @@ class CalculatorViewController: UIViewController {
 					formattedLowerString = addSpaceEveryFourBits(binaryString)
 				} else {
 					// Split the bits in half.
-					upperString = binaryString.substringWithRange(Range<String.Index>(start: binaryString.startIndex, end: advance(binaryString.endIndex, -32)))
-					lowerString = binaryString.substringWithRange(Range<String.Index>(start: advance(binaryString.startIndex, 32), end: binaryString.endIndex))
+					upperString = binaryString.substringWithRange(Range<String.Index>(start: binaryString.startIndex, end: binaryString.endIndex.advancedBy(-32)))
+					lowerString = binaryString.substringWithRange(Range<String.Index>(start: binaryString.startIndex.advancedBy(32), end: binaryString.endIndex))
 					
 					formattedLowerString = addSpaceEveryFourBits(lowerString)
 					formattedUpperString = addSpaceEveryFourBits(upperString)
