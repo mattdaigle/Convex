@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class CalculatorViewController: UIViewController {
 
@@ -277,6 +278,8 @@ class CalculatorViewController: UIViewController {
 			}
 			
 			displayValue = 0
+            
+            promptForAppRatingIfNeeded()
 		}
 	}
 	
@@ -296,6 +299,10 @@ class CalculatorViewController: UIViewController {
 		} else {
 			showNonBinaryLabel()
 		}
+        
+        if displayValue > 0 {
+            UserPreferences.hasConverted = true
+        }
 	}
 	
 	
@@ -369,5 +376,99 @@ class CalculatorViewController: UIViewController {
 		}
 	}
 	
+    // MARK: - App Rating
+    private func promptForAppRatingIfNeeded() {
+        guard shouldPromptForAppRating() else { return }
+        
+        let actionSheet = UIAlertController(title: NSLocalizedString("POLL_EXPERIENCE_TITLE", comment: ""), message: NSLocalizedString("POLL_EXPERIENCE_MESSAGE", comment: ""), preferredStyle: .alert)
+        
+        let notAwesome = UIAlertAction(title: NSLocalizedString("NOT_AWESOME", comment: ""), style: .default) { (action) -> Void in
+            self.askToLeaveFeedback()
+        }
+        actionSheet.addAction(notAwesome)
+        
+        let awesome = UIAlertAction(title: NSLocalizedString("AWESOME", comment: ""), style: .default) { (action) -> Void in
+            self.askToRateApp()
+        }
+        actionSheet.addAction(awesome)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func shouldPromptForAppRating() -> Bool {
+        let firstAppLaunchDate = UserPreferences.firstAppLaunchDate ?? Date()
+        let calendar = NSCalendar.current
+        let date1 = calendar.startOfDay(for: firstAppLaunchDate)
+        let date2 = calendar.startOfDay(for: NSDate() as Date)
+        let daysWithApp = calendar.dateComponents([.day], from: date1, to: date2).day ?? 0
+        
+        guard !UserPreferences.haveAskedToRateApp else { return false }
+        guard UserPreferences.hasConverted else { return false }
+        guard UserPreferences.numberOfSessions >= Constants.AppRatingThresholds.sessions else { return false }
+        guard daysWithApp >= Constants.AppRatingThresholds.daysWithApp else { return false }
+        
+        UserPreferences.haveAskedToRateApp = true
+        
+        return true
+    }
+    
+    private func askToRateApp() {
+        let actionSheet = UIAlertController(title: NSLocalizedString("ASK_TO_RATE_APP_TITLE", comment: ""), message: NSLocalizedString("ASK_TO_RATE_APP_MESSAGE", comment: ""), preferredStyle: .alert)
+        
+        let maybeLater = UIAlertAction(title: NSLocalizedString("MAYBE_LATER", comment: ""), style: .cancel) { (action) -> Void in
+            // TODO: Reset time until we ask again.
+        }
+        actionSheet.addAction(maybeLater)
+        
+        let ok = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { (action) -> Void in
+            self.openAppStore()
+        }
+        actionSheet.addAction(ok)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func askToLeaveFeedback() {
+        let actionSheet = UIAlertController(title: NSLocalizedString("ASK_TO_LEAVE_FEEDBACK_TITLE", comment: ""), message: NSLocalizedString("ASK_TO_LEAVE_FEEDBACK_MESSAGE", comment: ""), preferredStyle: .alert)
+        
+        let maybeLater = UIAlertAction(title: NSLocalizedString("MAYBE_LATER", comment: ""), style: .cancel) { (action) -> Void in
+            // TODO: Reset time until we ask again.
+        }
+        actionSheet.addAction(maybeLater)
+        
+        let ok = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { (action) -> Void in
+            self.sendEmail()
+        }
+        actionSheet.addAction(ok)
+        
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func openAppStore() {
+        guard let url = URL(string : "itms-apps://itunes.apple.com/app/id1021414602") else { return }
+        UIApplication.shared.openURL(url)
+    }
+    
+    private func sendEmail() {
+        guard MFMailComposeViewController.canSendMail() else {
+            // TODO: Show failure alert.
+            return
+        }
+        
+        let mailVC = MFMailComposeViewController()
+        mailVC.mailComposeDelegate = self
+        mailVC.setToRecipients(["m+convex@mattxdaigle.com"])
+        mailVC.setSubject("iOS App Feedback")
+        
+        present(mailVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - MFMailComposeViewControllerDelegate Methods
+extension CalculatorViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
 

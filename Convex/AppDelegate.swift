@@ -14,7 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
     
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
+        if UserPreferences.firstAppLaunchDate == nil {
+            UserPreferences.firstAppLaunchDate = Date()
+        }
 
 		return true
 	}
@@ -30,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func applicationWillEnterForeground(_ application: UIApplication) {
-		// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+		UserPreferences.numberOfSessions += 1
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication) {

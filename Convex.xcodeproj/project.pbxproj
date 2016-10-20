@@ -42,6 +42,10 @@
 		F0325A431DB9125F00EAE72D /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A261DB9125F00EAE72D /* TransitionManager.swift */; };
 		F0325A441DB9125F00EAE72D /* TransitionZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A271DB9125F00EAE72D /* TransitionZoom.swift */; };
 		F0325A451DB9125F00EAE72D /* UnwindSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A281DB9125F00EAE72D /* UnwindSegue.swift */; };
+		F0325A471DB91DAB00EAE72D /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A461DB91DAB00EAE72D /* UserDefaultsUtils.swift */; };
+		F0325A491DB91EE900EAE72D /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A481DB91EE900EAE72D /* UserPreferences.swift */; };
+		F0325A4B1DB91FC600EAE72D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A4A1DB91FC600EAE72D /* Constants.swift */; };
+		F0325A4D1DB922D800EAE72D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0325A4C1DB922D800EAE72D /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +89,10 @@
 		F0325A261DB9125F00EAE72D /* TransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		F0325A271DB9125F00EAE72D /* TransitionZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionZoom.swift; sourceTree = "<group>"; };
 		F0325A281DB9125F00EAE72D /* UnwindSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindSegue.swift; sourceTree = "<group>"; };
+		F0325A461DB91DAB00EAE72D /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
+		F0325A481DB91EE900EAE72D /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		F0325A4A1DB91FC600EAE72D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F0325A4C1DB922D800EAE72D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +129,9 @@
 				F0325A0A1DB9125F00EAE72D /* Spring */,
 				3C67B6C61AA3FC5B0094C726 /* Main.storyboard */,
 				3C67B6C41AA3FC5B0094C726 /* CalculatorViewController.swift */,
+				F0325A461DB91DAB00EAE72D /* UserDefaultsUtils.swift */,
+				F0325A481DB91EE900EAE72D /* UserPreferences.swift */,
+				F0325A4A1DB91FC600EAE72D /* Constants.swift */,
 				3CEE98B41B71321600E7F694 /* CalculatorModel.swift */,
 				3C67B6C01AA3FC5B0094C726 /* Supporting Files */,
 			);
@@ -131,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				3C67B6C21AA3FC5B0094C726 /* AppDelegate.swift */,
+				F0325A4C1DB922D800EAE72D /* Localizable.strings */,
 				3C92E6E41B5E0B2700BD4988 /* LaunchScreen.xib */,
 				3C67B6C91AA3FC5B0094C726 /* Images.xcassets */,
 				3C67B6C11AA3FC5B0094C726 /* Info.plist */,
@@ -254,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0325A351DB9125F00EAE72D /* Info.plist in Resources */,
+				F0325A4D1DB922D800EAE72D /* Localizable.strings in Resources */,
 				3C92E6E51B5E0B2700BD4988 /* LaunchScreen.xib in Resources */,
 				3C67B6C81AA3FC5B0094C726 /* Main.storyboard in Resources */,
 				3C67B6CA1AA3FC5B0094C726 /* Images.xcassets in Resources */,
@@ -269,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0325A2F1DB9125F00EAE72D /* DesignableLabel.swift in Sources */,
+				F0325A491DB91EE900EAE72D /* UserPreferences.swift in Sources */,
 				F0325A3E1DB9125F00EAE72D /* SpringImageView.swift in Sources */,
 				F0325A2B1DB9125F00EAE72D /* AutoTextView.swift in Sources */,
 				F0325A341DB9125F00EAE72D /* ImageLoader.swift in Sources */,
@@ -289,6 +303,8 @@
 				F0325A431DB9125F00EAE72D /* TransitionManager.swift in Sources */,
 				F0325A3F1DB9125F00EAE72D /* SpringLabel.swift in Sources */,
 				F0325A291DB9125F00EAE72D /* AsyncButton.swift in Sources */,
+				F0325A471DB91DAB00EAE72D /* UserDefaultsUtils.swift in Sources */,
+				F0325A4B1DB91FC600EAE72D /* Constants.swift in Sources */,
 				F0325A2A1DB9125F00EAE72D /* AsyncImageView.swift in Sources */,
 				F0325A321DB9125F00EAE72D /* DesignableTextView.swift in Sources */,
 				F0325A421DB9125F00EAE72D /* SpringView.swift in Sources */,
