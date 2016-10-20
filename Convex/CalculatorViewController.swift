@@ -65,7 +65,7 @@ class CalculatorViewController: UIViewController {
 		if calculatorBrain.cpuRegisterSize == 32 {
 			// Move the top constraint from the upper binary view to the two's complement button.
 			binaryView.removeConstraint(binaryLowerViewTopConstraint)
-			binaryView.addConstraint(NSLayoutConstraint(item: binaryLowerView, attribute: .Top, relatedBy: .Equal, toItem: binaryView, attribute: .Top, multiplier: 1.0, constant: 15))
+			binaryView.addConstraint(NSLayoutConstraint(item: binaryLowerView, attribute: .top, relatedBy: .equal, toItem: binaryView, attribute: .top, multiplier: 1.0, constant: 15))
 		}
 		
 		operationButtons = [twosComplementButton, byteFlipButton, copyButton, clearButton, backspaceButton]
@@ -87,20 +87,20 @@ class CalculatorViewController: UIViewController {
 		let operationButtonFontSize = backspaceButton.frame.height/2.2
 		let numberLabelFontSize = numberLabel.frame.height/2
 		
-		let numberButtonFont = UIFont.systemFontOfSize(numberButtonFontSize, weight: UIFontWeightThin)
-		let converterButtonFont = UIFont.systemFontOfSize(converterButtonFontSize, weight: UIFontWeightLight)
-		let operationButtonFont = UIFont.systemFontOfSize(operationButtonFontSize, weight: UIFontWeightLight)
+		let numberButtonFont = UIFont.systemFont(ofSize: numberButtonFontSize, weight: UIFontWeightThin)
+		let converterButtonFont = UIFont.systemFont(ofSize: converterButtonFontSize, weight: UIFontWeightLight)
+		let operationButtonFont = UIFont.systemFont(ofSize: operationButtonFontSize, weight: UIFontWeightLight)
 		let numberLabelFont: UIFont
 		let binaryLabelFont: UIFont
 		let bitIndicatorFont: UIFont
 		if #available(iOS 9.0, *) {
-			numberLabelFont = UIFont.monospacedDigitSystemFontOfSize(numberLabelFontSize, weight: UIFontWeightUltraLight)
-			binaryLabelFont = UIFont.monospacedDigitSystemFontOfSize(20, weight: UIFontWeightRegular)
-			bitIndicatorFont = UIFont.monospacedDigitSystemFontOfSize(12, weight: UIFontWeightRegular)
+			numberLabelFont = UIFont.monospacedDigitSystemFont(ofSize: numberLabelFontSize, weight: UIFontWeightUltraLight)
+			binaryLabelFont = UIFont.monospacedDigitSystemFont(ofSize: 20, weight: UIFontWeightRegular)
+			bitIndicatorFont = UIFont.monospacedDigitSystemFont(ofSize: 12, weight: UIFontWeightRegular)
 		} else {
-			numberLabelFont = UIFont.systemFontOfSize(numberLabelFontSize, weight: UIFontWeightUltraLight)
-			binaryLabelFont = UIFont.systemFontOfSize(20, weight: UIFontWeightUltraLight)
-			bitIndicatorFont = UIFont.systemFontOfSize(binaryTopLabel.font.capHeight, weight: UIFontWeightRegular)
+			numberLabelFont = UIFont.systemFont(ofSize: numberLabelFontSize, weight: UIFontWeightUltraLight)
+			binaryLabelFont = UIFont.systemFont(ofSize: 20, weight: UIFontWeightUltraLight)
+			bitIndicatorFont = UIFont.systemFont(ofSize: binaryTopLabel.font.capHeight, weight: UIFontWeightRegular)
 		}
 		
 		// Adjust the font sizes.
@@ -121,28 +121,28 @@ class CalculatorViewController: UIViewController {
 		}
 	}
 	
-	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		return false
 	}
 	
-	override func canBecomeFirstResponder() -> Bool {
+	override var canBecomeFirstResponder : Bool {
 		return true
 	}
 	
-	override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
-		if motion == .MotionShake {
+	override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+		if motion == .motionShake {
 			clearNumber()
 		}
 	}
 	
-	func selectButton(selectedButton: UIButton) {
+	func selectButton(_ selectedButton: UIButton) {
 		for button in converterButtons {
 			if button == selectedButton {
-				button.setBackgroundImage(UIImage(named: "rectangle_black"), forState: UIControlState.Normal)
-				button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+				button.setBackgroundImage(UIImage(named: "rectangle_black"), for: UIControlState())
+				button.setTitleColor(UIColor.white, for: UIControlState())
 			} else {
-				button.setBackgroundImage(UIImage(named: "rectangle_gray_light"), forState: UIControlState.Normal)
-				button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+				button.setBackgroundImage(UIImage(named: "rectangle_gray_light"), for: UIControlState())
+				button.setTitleColor(UIColor.black, for: UIControlState())
 			}
 		}
 	}
@@ -155,7 +155,7 @@ class CalculatorViewController: UIViewController {
 		if displayType != "hex" {
 			// Disable all buttons.
 			for button in hexButtons {
-				button.enabled = false
+				button.isEnabled = false
 			}
 		}
 		
@@ -173,14 +173,14 @@ class CalculatorViewController: UIViewController {
 		}
 		
 		for button in buttonsToEnable {
-			button.enabled = true
+			button.isEnabled = true
 		}
 	}
 	
-	func addSpaceEveryFourBits(binaryString: String) -> String {
+	func addSpaceEveryFourBits(_ binaryString: String) -> String {
 		var formattedString = String()
 		
-		for (index, character) in binaryString.characters.enumerate() {
+		for (index, character) in binaryString.characters.enumerated() {
 			if index % 4 == 0 && index > 0 {
 				formattedString.append(Character(" "))
 			}
@@ -191,7 +191,7 @@ class CalculatorViewController: UIViewController {
 		return formattedString
 	}
 	
-	func padBinaryString(binaryString: String, toSize: Int) -> String {
+	func padBinaryString(_ binaryString: String, toSize: Int) -> String {
 		var padded = binaryString
 		
 		for _ in 0..<toSize - binaryString.characters.count {
@@ -202,17 +202,17 @@ class CalculatorViewController: UIViewController {
 	}
 	
 	func showNonBinaryLabel() {
-		numberLabel.hidden = false
-		binaryView.hidden = true
+		numberLabel.isHidden = false
+		binaryView.isHidden = true
 	}
 	
 	func showBinaryLabels() {
-		numberLabel.hidden = true
-		binaryView.hidden = false
-		binaryUpperView.hidden = calculatorBrain.cpuRegisterSize == 32 ? true : false
+		numberLabel.isHidden = true
+		binaryView.isHidden = false
+		binaryUpperView.isHidden = calculatorBrain.cpuRegisterSize == 32 ? true : false
 	}
 	
-	func animateLabel(label: SpringLabel, animation: String, curve: String, duration: CGFloat) {
+	func animateLabel(_ label: SpringLabel, animation: String, curve: String, duration: CGFloat) {
 		label.animation = animation
 		label.curve = curve
 		label.duration = duration
@@ -221,14 +221,14 @@ class CalculatorViewController: UIViewController {
 	
 	// MARK: IBActions
 	
-	@IBAction func handleDoubleTap(recognizer: UITapGestureRecognizer) {
-		if recognizer.state == .Ended {
+	@IBAction func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
+		if recognizer.state == .ended {
 			copyNumber()
 		}
 	}
 	
-	@IBAction func handleSwipe(recognizer: UISwipeGestureRecognizer) {
-		if recognizer.state == .Ended {
+	@IBAction func handleSwipe(_ recognizer: UISwipeGestureRecognizer) {
+		if recognizer.state == .ended {
 			clearNumber()
 		}
 	}
@@ -259,7 +259,7 @@ class CalculatorViewController: UIViewController {
 			numberString = numberLabel.text!
 		}
 		
-		UIPasteboard.generalPasteboard().string = numberString
+		UIPasteboard.general.string = numberString
 	}
 	
 	@IBAction func clearNumber() {
@@ -284,7 +284,7 @@ class CalculatorViewController: UIViewController {
 		displayValue /= radixValue[displayType]!
 	}
 	
-	@IBAction func convertNumber(sender: UIButton) {
+	@IBAction func convertNumber(_ sender: UIButton) {
 		let currentValue = displayValue
 		displayType = sender.currentTitle!
 		displayValue = currentValue
@@ -298,18 +298,18 @@ class CalculatorViewController: UIViewController {
 		}
 	}
 	
-	@IBAction func appendDigit(sender: UIButton) {
+	@IBAction func appendDigit(_ sender: UIButton) {
 		displayValue = calculatorBrain.appendDigit(displayValue, digit: sender.currentTitle!, type: displayType)
 	}
 	
 	var displayValue: UInt {
 		get {
 			// Remove commas from the number just in case it's a formatted decimal number.
-			var number = numberLabel.text!.stringByReplacingOccurrencesOfString(",", withString: "", options: [], range: nil)
+			var number = numberLabel.text!.replacingOccurrences(of: ",", with: "", options: [], range: nil)
 			
 			if displayType == "bin" {
 				// Remove spaces from the number.
-				number = binaryTopLabel.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil) + binaryBottomLabel.text!.stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil)
+				number = binaryTopLabel.text!.replacingOccurrences(of: " ", with: "", options: [], range: nil) + binaryBottomLabel.text!.replacingOccurrences(of: " ", with: "", options: [], range: nil)
 			}
 			
 			return UInt(strtoul(number, nil, Int32(radixValue[displayType]!)))
@@ -325,7 +325,7 @@ class CalculatorViewController: UIViewController {
 				
 				// Formatting the decimal string manually because NSNumberFormatter is displaying two's complement as a negative number.
 				let firstCommaIndex = decimalString.characters.count % 3
-				for (index, character) in decimalString.characters.enumerate() {
+				for (index, character) in decimalString.characters.enumerated() {
 					if decimalString.characters.count > 3 {
 						if (index == firstCommaIndex || (index - firstCommaIndex) % 3 == 0) && index > 0 {
 							formattedDecimalString.append(Character(","))
@@ -354,8 +354,8 @@ class CalculatorViewController: UIViewController {
 					formattedLowerString = addSpaceEveryFourBits(binaryString)
 				} else {
 					// Split the bits in half.
-					upperString = binaryString.substringWithRange(Range<String.Index>(start: binaryString.startIndex, end: binaryString.endIndex.advancedBy(-32)))
-					lowerString = binaryString.substringWithRange(Range<String.Index>(start: binaryString.startIndex.advancedBy(32), end: binaryString.endIndex))
+					upperString = binaryString.substring(with: (binaryString.startIndex ..< binaryString.characters.index(binaryString.endIndex, offsetBy: -32)))
+					lowerString = binaryString.substring(with: (binaryString.characters.index(binaryString.startIndex, offsetBy: 32) ..< binaryString.endIndex))
 					
 					formattedLowerString = addSpaceEveryFourBits(lowerString)
 					formattedUpperString = addSpaceEveryFourBits(upperString)

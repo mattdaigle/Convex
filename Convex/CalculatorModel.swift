@@ -14,7 +14,8 @@ class CalculatorModel: NSObject {
 	
 	let cpuRegisterSize = String(UInt.max, radix: 2).characters.count
 	
-	func flipBytes(var value: UInt) -> UInt {
+	func flipBytes(_ value: UInt) -> UInt {
+		var value = value
 		if value > 0 {
 			// Determine how many bytes the number is.
 			let zero: Character = "0"
@@ -24,7 +25,7 @@ class CalculatorModel: NSObject {
 			if bitPaddingCount == 8 {
 				bitPaddingCount = 0
 			}
-			let bitPadding = String(count: bitPaddingCount, repeatedValue: zero)
+			let bitPadding = String(repeating: String(zero), count: bitPaddingCount)
 			let paddedNumberAsBinary = bitPadding + currentNumberAsBinary
 			let paddedNumberByteCount = UInt(paddedNumberAsBinary.characters.count/8)
 			let rightShiftCount = UInt(cpuRegisterSize) - UInt(paddedNumberByteCount * 8)
@@ -37,7 +38,8 @@ class CalculatorModel: NSObject {
 		return value
 	}
 	
-	func twosComplement(var value: UInt) -> UInt {
+	func twosComplement(_ value: UInt) -> UInt {
+		var value = value
 		if value > 0 {
 			if UInt.max - ~value >= 1 {
 				// We won't overflow. Complete the two's complement.
@@ -48,7 +50,8 @@ class CalculatorModel: NSObject {
 		return value
 	}
 	
-	func appendDigit(var value: UInt, digit: String, type: String) -> UInt {
+	func appendDigit(_ value: UInt, digit: String, type: String) -> UInt {
+		var value = value
 		if value > 0 || digit != "0" {
 			let numberToAppendAsUInt = strtoul(digit, nil, 16)
 			let radix = radixValue[type]!
