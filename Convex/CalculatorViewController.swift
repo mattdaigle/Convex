@@ -135,7 +135,7 @@ class CalculatorViewController: UIViewController {
 		}
 	}
 	
-	func selectButton(_ selectedButton: UIButton) {
+	func selectButton(selectedButton: UIButton) {
 		for button in converterButtons {
 			if button == selectedButton {
 				button.setBackgroundImage(UIImage(named: "rectangle_black"), for: UIControlState())
@@ -147,7 +147,7 @@ class CalculatorViewController: UIViewController {
 		}
 	}
 	
-	// MARK: Button State Handlers
+	// MARK: - Button State Handlers
 	
 	func enableEssentialNumberButtons() {
 		var buttonsToEnable = [UIButton]()
@@ -177,7 +177,7 @@ class CalculatorViewController: UIViewController {
 		}
 	}
 	
-	func addSpaceEveryFourBits(_ binaryString: String) -> String {
+	func addSpaceEveryFourBits(binaryString: String) -> String {
 		var formattedString = String()
 		
 		for (index, character) in binaryString.characters.enumerated() {
@@ -191,7 +191,7 @@ class CalculatorViewController: UIViewController {
 		return formattedString
 	}
 	
-	func padBinaryString(_ binaryString: String, toSize: Int) -> String {
+	func padBinaryString(binaryString: String, toSize: Int) -> String {
 		var padded = binaryString
 		
 		for _ in 0..<toSize - binaryString.characters.count {
@@ -212,14 +212,14 @@ class CalculatorViewController: UIViewController {
 		binaryUpperView.isHidden = calculatorBrain.cpuRegisterSize == 32 ? true : false
 	}
 	
-	func animateLabel(_ label: SpringLabel, animation: String, curve: String, duration: CGFloat) {
+	func animateLabel(label: SpringLabel, animation: String, curve: String, duration: CGFloat) {
 		label.animation = animation
 		label.curve = curve
 		label.duration = duration
 		label.animate()
 	}
 	
-	// MARK: IBActions
+	// MARK: - IBActions
 	
 	@IBAction func handleDoubleTap(_ recognizer: UITapGestureRecognizer) {
 		if recognizer.state == .ended {
@@ -234,11 +234,11 @@ class CalculatorViewController: UIViewController {
 	}
 	
 	@IBAction func twosComplement() {
-		displayValue = calculatorBrain.twosComplement(displayValue)
+		displayValue = calculatorBrain.twosComplement(value: displayValue)
 	}
 	
 	@IBAction func flipBytes() {
-		displayValue = calculatorBrain.flipBytes(displayValue)
+		displayValue = calculatorBrain.flipBytes(value: displayValue)
 	}
 	
 	@IBAction func copyNumber() {
@@ -249,17 +249,17 @@ class CalculatorViewController: UIViewController {
 		
 		// Add an animation as feedback that the number was copied.
 		if displayType == "bin" {
-			animateLabel(binaryTopLabel, animation: animation, curve: curve, duration: duration)
-			animateLabel(binaryBottomLabel, animation: animation, curve: curve, duration: duration)
+			animateLabel(label: binaryTopLabel, animation: animation, curve: curve, duration: duration)
+			animateLabel(label: binaryBottomLabel, animation: animation, curve: curve, duration: duration)
 			
 			numberString = calculatorBrain.cpuRegisterSize == 32 ? binaryBottomLabel.text! : binaryTopLabel.text! + " " + binaryBottomLabel.text!
 		} else {
-			animateLabel(numberLabel, animation: animation, curve: curve, duration: duration)
+			animateLabel(label: numberLabel, animation: animation, curve: curve, duration: duration)
 			
 			numberString = numberLabel.text!
 		}
-		
-		UIPasteboard.general.string = numberString
+        
+        UIPasteboard.general.string = numberString
 	}
 	
 	@IBAction func clearNumber() {
@@ -270,10 +270,10 @@ class CalculatorViewController: UIViewController {
 			
 			// Add an animation for when the number label's text changes.
 			if displayType == "bin" {
-				animateLabel(binaryTopLabel, animation: animation, curve: curve, duration: duration)
-				animateLabel(binaryBottomLabel, animation: animation, curve: curve, duration: duration)
+				animateLabel(label: binaryTopLabel, animation: animation, curve: curve, duration: duration)
+				animateLabel(label: binaryBottomLabel, animation: animation, curve: curve, duration: duration)
 			} else {
-				animateLabel(numberLabel, animation: animation, curve: curve, duration: duration)
+				animateLabel(label: numberLabel, animation: animation, curve: curve, duration: duration)
 			}
 			
 			displayValue = 0
@@ -289,7 +289,7 @@ class CalculatorViewController: UIViewController {
 		displayType = sender.currentTitle!
 		displayValue = currentValue
 		
-		selectButton(sender)
+		selectButton(selectedButton: sender)
 		enableEssentialNumberButtons()
 		if displayType == "bin" {
 			showBinaryLabels()
@@ -298,9 +298,10 @@ class CalculatorViewController: UIViewController {
 		}
 	}
 	
-	@IBAction func appendDigit(_ sender: UIButton) {
-		displayValue = calculatorBrain.appendDigit(displayValue, digit: sender.currentTitle!, type: displayType)
-	}
+	
+    @IBAction func appendDigit(_ sender: UIButton) {
+        displayValue = calculatorBrain.appendDigit(value: displayValue, digit: sender.currentTitle!, type: displayType)
+    }
 	
 	var displayValue: UInt {
 		get {
@@ -351,14 +352,14 @@ class CalculatorViewController: UIViewController {
 				}
 				
 				if calculatorBrain.cpuRegisterSize == 32 {
-					formattedLowerString = addSpaceEveryFourBits(binaryString)
+					formattedLowerString = addSpaceEveryFourBits(binaryString: binaryString)
 				} else {
 					// Split the bits in half.
 					upperString = binaryString.substring(with: (binaryString.startIndex ..< binaryString.characters.index(binaryString.endIndex, offsetBy: -32)))
 					lowerString = binaryString.substring(with: (binaryString.characters.index(binaryString.startIndex, offsetBy: 32) ..< binaryString.endIndex))
 					
-					formattedLowerString = addSpaceEveryFourBits(lowerString)
-					formattedUpperString = addSpaceEveryFourBits(upperString)
+					formattedLowerString = addSpaceEveryFourBits(binaryString: lowerString)
+					formattedUpperString = addSpaceEveryFourBits(binaryString: upperString)
 				}
 				
 				binaryBottomLabel.text = formattedLowerString

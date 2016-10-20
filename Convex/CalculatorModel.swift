@@ -14,7 +14,7 @@ class CalculatorModel: NSObject {
 	
 	let cpuRegisterSize = String(UInt.max, radix: 2).characters.count
 	
-	func flipBytes(_ value: UInt) -> UInt {
+	func flipBytes(value: UInt) -> UInt {
 		var value = value
 		if value > 0 {
 			// Determine how many bytes the number is.
@@ -38,10 +38,11 @@ class CalculatorModel: NSObject {
 		return value
 	}
 	
-	func twosComplement(_ value: UInt) -> UInt {
+	func twosComplement(value: UInt) -> UInt {
 		var value = value
 		if value > 0 {
-			if UInt.max - ~value >= 1 {
+            let overflowValue = UInt.max - ~value
+			if overflowValue >= 1 {
 				// We won't overflow. Complete the two's complement.
 				value = ~value + 1
 			}
@@ -50,7 +51,7 @@ class CalculatorModel: NSObject {
 		return value
 	}
 	
-	func appendDigit(_ value: UInt, digit: String, type: String) -> UInt {
+	func appendDigit(value: UInt, digit: String, type: String) -> UInt {
 		var value = value
 		if value > 0 || digit != "0" {
 			let numberToAppendAsUInt = strtoul(digit, nil, 16)

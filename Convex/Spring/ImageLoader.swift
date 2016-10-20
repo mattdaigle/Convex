@@ -24,23 +24,36 @@ import UIKit
 import Foundation
 
 
-open class ImageLoader {
+public class ImageLoader {
     
-    var cache = NSCache()
+    var cache = NSCache<NSString, NSData>()
     
-    open class var sharedLoader : ImageLoader {
-    struct Static {
-        static let instance : ImageLoader = ImageLoader()
+    public class var sharedLoader : ImageLoader {
+        struct Static {
+            static let instance : ImageLoader = ImageLoader()
         }
         return Static.instance
     }
     
-    open func imageForUrl(_ urlString: String, completionHandler:@escaping (_ image: UIImage?, _ url: String) -> ()) {
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {()in
-            let data: Data? = self.cache.object(forKey: urlString) as? Data
+    public func imageForUrl(urlString: String, completionHandler: @escaping(_ image: UIImage?, _ url: String) -> ()) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async { 
+            var data: NSData?
+            
+            if let dataCache = self.cache.object(forKey: urlString as NSString){
+                data = (dataCache) as NSData
+                
+            }else{
+                if (URL(string: urlString) != nil)
+                {
+                    data = NSData(contentsOf: URL(string: urlString)!)
+                    self.cache.setObject(data!, forKey: urlString as NSString)
+                }else{
+                    return
+                }
+            }
             
             if let goodData = data {
-                let image = UIImage(data: goodData)
+                let image = UIImage(data: goodData as Data)
                 DispatchQueue.main.async(execute: {() in
                     completionHandler(image, urlString)
                 })
@@ -48,6 +61,7 @@ open class ImageLoader {
             }
             
             let downloadTask: URLSessionDataTask = URLSession.shared.dataTask(with: URL(string: urlString)!, completionHandler: { (data, response, error) -> Void in
+                
                 if (error != nil) {
                     completionHandler(nil, urlString)
                     return
@@ -55,7 +69,7 @@ open class ImageLoader {
                 
                 if data != nil {
                     let image = UIImage(data: data!)
-                    self.cache.setObject(data!, forKey: urlString)
+                    self.cache.setObject(data! as NSData, forKey: urlString as NSString)
                     DispatchQueue.main.async(execute: {() in
                         completionHandler(image, urlString)
                     })
@@ -64,7 +78,7 @@ open class ImageLoader {
             })
             downloadTask.resume()
             
-        })
+        }
         
     }
 }
