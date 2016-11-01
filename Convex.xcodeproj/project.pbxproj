@@ -10,7 +10,7 @@
 		3C67B6C31AA3FC5B0094C726 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C67B6C21AA3FC5B0094C726 /* AppDelegate.swift */; };
 		3C67B6C51AA3FC5B0094C726 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C67B6C41AA3FC5B0094C726 /* CalculatorViewController.swift */; };
 		3C67B6C81AA3FC5B0094C726 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C67B6C61AA3FC5B0094C726 /* Main.storyboard */; };
-		3C67B6CA1AA3FC5B0094C726 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C67B6C91AA3FC5B0094C726 /* Images.xcassets */; };
+		3C67B6CA1AA3FC5B0094C726 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C67B6C91AA3FC5B0094C726 /* Assets.xcassets */; };
 		3C92E6E51B5E0B2700BD4988 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C92E6E41B5E0B2700BD4988 /* LaunchScreen.xib */; };
 		3CEE98B51B71321600E7F694 /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE98B41B71321600E7F694 /* CalculatorModel.swift */; };
 		F0325A291DB9125F00EAE72D /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A0B1DB9125F00EAE72D /* AsyncButton.swift */; };
@@ -46,6 +46,8 @@
 		F0325A491DB91EE900EAE72D /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A481DB91EE900EAE72D /* UserPreferences.swift */; };
 		F0325A4B1DB91FC600EAE72D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0325A4A1DB91FC600EAE72D /* Constants.swift */; };
 		F0325A4D1DB922D800EAE72D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0325A4C1DB922D800EAE72D /* Localizable.strings */; };
+		F03453541DC92F3E0021A0F7 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03453521DC92F3E0021A0F7 /* Fabric.framework */; };
+		F03453551DC92F3E0021A0F7 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03453531DC92F3E0021A0F7 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +56,7 @@
 		3C67B6C21AA3FC5B0094C726 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C67B6C41AA3FC5B0094C726 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		3C67B6C71AA3FC5B0094C726 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3C67B6C91AA3FC5B0094C726 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3C67B6C91AA3FC5B0094C726 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C67B6D71AA3FC5B0094C726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C67B6D81AA3FC5B0094C726 /* ConvexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvexTests.swift; sourceTree = "<group>"; };
 		3C92E6E41B5E0B2700BD4988 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -93,6 +95,8 @@
 		F0325A481DB91EE900EAE72D /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		F0325A4A1DB91FC600EAE72D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F0325A4C1DB922D800EAE72D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F03453521DC92F3E0021A0F7 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		F03453531DC92F3E0021A0F7 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F03453551DC92F3E0021A0F7 /* Crashlytics.framework in Frameworks */,
+				F03453541DC92F3E0021A0F7 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +118,7 @@
 				3C67B6BF1AA3FC5B0094C726 /* Convex */,
 				3C67B6D51AA3FC5B0094C726 /* ConvexTests */,
 				3C67B6BE1AA3FC5B0094C726 /* Products */,
+				F03453561DC92F4B0021A0F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,28 +133,23 @@
 		3C67B6BF1AA3FC5B0094C726 /* Convex */ = {
 			isa = PBXGroup;
 			children = (
+				3C67B6C01AA3FC5B0094C726 /* Application */,
+				F034535B1DC931AE0021A0F7 /* Controllers */,
+				F034535C1DC931C30021A0F7 /* Models */,
+				F034535A1DC931A60021A0F7 /* Utils */,
+				F03453571DC930740021A0F7 /* Resources */,
 				F0325A0A1DB9125F00EAE72D /* Spring */,
-				3C67B6C61AA3FC5B0094C726 /* Main.storyboard */,
-				3C67B6C41AA3FC5B0094C726 /* CalculatorViewController.swift */,
-				F0325A461DB91DAB00EAE72D /* UserDefaultsUtils.swift */,
-				F0325A481DB91EE900EAE72D /* UserPreferences.swift */,
-				F0325A4A1DB91FC600EAE72D /* Constants.swift */,
-				3CEE98B41B71321600E7F694 /* CalculatorModel.swift */,
-				3C67B6C01AA3FC5B0094C726 /* Supporting Files */,
 			);
 			path = Convex;
 			sourceTree = "<group>";
 		};
-		3C67B6C01AA3FC5B0094C726 /* Supporting Files */ = {
+		3C67B6C01AA3FC5B0094C726 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				3C67B6C21AA3FC5B0094C726 /* AppDelegate.swift */,
-				F0325A4C1DB922D800EAE72D /* Localizable.strings */,
-				3C92E6E41B5E0B2700BD4988 /* LaunchScreen.xib */,
-				3C67B6C91AA3FC5B0094C726 /* Images.xcassets */,
 				3C67B6C11AA3FC5B0094C726 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			name = Application;
 			sourceTree = "<group>";
 		};
 		3C67B6D51AA3FC5B0094C726 /* ConvexTests */ = {
@@ -204,6 +206,68 @@
 			path = Spring;
 			sourceTree = "<group>";
 		};
+		F03453561DC92F4B0021A0F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F03453521DC92F3E0021A0F7 /* Fabric.framework */,
+				F03453531DC92F3E0021A0F7 /* Crashlytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F03453571DC930740021A0F7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3C67B6C91AA3FC5B0094C726 /* Assets.xcassets */,
+				F03453581DC930D50021A0F7 /* Localization */,
+				F03453591DC930EE0021A0F7 /* Storyboards */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F03453581DC930D50021A0F7 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				F0325A4C1DB922D800EAE72D /* Localizable.strings */,
+			);
+			name = Localization;
+			sourceTree = "<group>";
+		};
+		F03453591DC930EE0021A0F7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3C67B6C61AA3FC5B0094C726 /* Main.storyboard */,
+				3C92E6E41B5E0B2700BD4988 /* LaunchScreen.xib */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		F034535A1DC931A60021A0F7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F0325A461DB91DAB00EAE72D /* UserDefaultsUtils.swift */,
+				F0325A481DB91EE900EAE72D /* UserPreferences.swift */,
+				F0325A4A1DB91FC600EAE72D /* Constants.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		F034535B1DC931AE0021A0F7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C67B6C41AA3FC5B0094C726 /* CalculatorViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F034535C1DC931C30021A0F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3CEE98B41B71321600E7F694 /* CalculatorModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -214,6 +278,7 @@
 				3C67B6B91AA3FC5B0094C726 /* Sources */,
 				3C67B6BA1AA3FC5B0094C726 /* Frameworks */,
 				3C67B6BB1AA3FC5B0094C726 /* Resources */,
+				F03453501DC92E290021A0F7 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -269,12 +334,29 @@
 				F0325A4D1DB922D800EAE72D /* Localizable.strings in Resources */,
 				3C92E6E51B5E0B2700BD4988 /* LaunchScreen.xib in Resources */,
 				3C67B6C81AA3FC5B0094C726 /* Main.storyboard in Resources */,
-				3C67B6CA1AA3FC5B0094C726 /* Images.xcassets in Resources */,
+				3C67B6CA1AA3FC5B0094C726 /* Assets.xcassets in Resources */,
 				F0325A381DB9125F00EAE72D /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F03453501DC92E290021A0F7 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 49418b588f10840b411d5e53def1f9fec43474d3 1894674cb50bc58db1a55eabd958c637b247d06429211ad35ee80b94aa4ddaca";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3C67B6B91AA3FC5B0094C726 /* Sources */ = {
@@ -426,6 +508,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Convex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -443,6 +529,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Convex/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
