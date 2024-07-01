@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HexNumberButton: View {
     
-    @State var viewModel: NumberButtonViewModel
+    var viewModel: NumberButtonViewModel
     @State var width: CGFloat = .zero
     
     var body: some View {

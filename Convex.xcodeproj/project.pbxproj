@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		402C2CB82C3246EE0098F4CC /* View+LayoutChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C2CB72C3246EE0098F4CC /* View+LayoutChanges.swift */; };
+		402C2CC12C3258C20098F4CC /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C2CC02C3258C20098F4CC /* CalculatorModel.swift */; };
+		402C2CC32C3266230098F4CC /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C2CC22C3266230098F4CC /* CalculatorViewModel.swift */; };
+		402C2CC62C32727B0098F4CC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 402C2CC52C32727B0098F4CC /* Launch Screen.storyboard */; };
 		40936E6F2C31E94E00E7541C /* ConvexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40936E6E2C31E94E00E7541C /* ConvexApp.swift */; };
 		40936E712C31E94E00E7541C /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40936E702C31E94E00E7541C /* CalculatorView.swift */; };
 		40936E732C31E94F00E7541C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40936E722C31E94F00E7541C /* Assets.xcassets */; };
@@ -41,6 +44,9 @@
 
 /* Begin PBXFileReference section */
 		402C2CB72C3246EE0098F4CC /* View+LayoutChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+LayoutChanges.swift"; sourceTree = "<group>"; };
+		402C2CC02C3258C20098F4CC /* CalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = "<group>"; };
+		402C2CC22C3266230098F4CC /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
+		402C2CC52C32727B0098F4CC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		40936E6B2C31E94E00E7541C /* Convex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Convex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40936E6E2C31E94E00E7541C /* ConvexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvexApp.swift; sourceTree = "<group>"; };
 		40936E702C31E94E00E7541C /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 		402C2CBA2C32470B0098F4CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				402C2CC02C3258C20098F4CC /* CalculatorModel.swift */,
 				40936EA22C3213FC00E7541C /* Base.swift */,
 			);
 			path = Models;
@@ -103,10 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				40936E702C31E94E00E7541C /* CalculatorView.swift */,
-				40936E9A2C31F95600E7541C /* DecimalNumberButton.swift */,
-				40936EA02C32102600E7541C /* HexNumberButton.swift */,
-				40936E982C31F54600E7541C /* NumberButtonViewModel.swift */,
-				40936E9C2C3207D700E7541C /* NumberButtonStyle.swift */,
+				402C2CC22C3266230098F4CC /* CalculatorViewModel.swift */,
+				402C2CC42C3266350098F4CC /* Buttons */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				40936E722C31E94F00E7541C /* Assets.xcassets */,
+				402C2CC52C32727B0098F4CC /* Launch Screen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -125,6 +131,17 @@
 				40936E6E2C31E94E00E7541C /* ConvexApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		402C2CC42C3266350098F4CC /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				40936E9A2C31F95600E7541C /* DecimalNumberButton.swift */,
+				40936EA02C32102600E7541C /* HexNumberButton.swift */,
+				40936E982C31F54600E7541C /* NumberButtonViewModel.swift */,
+				40936E9C2C3207D700E7541C /* NumberButtonStyle.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		40936E622C31E94E00E7541C = {
@@ -289,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				402C2CC62C32727B0098F4CC /* Launch Screen.storyboard in Resources */,
 				40936E762C31E94F00E7541C /* Preview Assets.xcassets in Resources */,
 				40936E732C31E94F00E7541C /* Assets.xcassets in Resources */,
 			);
@@ -319,8 +337,10 @@
 				40936E992C31F54600E7541C /* NumberButtonViewModel.swift in Sources */,
 				40936E712C31E94E00E7541C /* CalculatorView.swift in Sources */,
 				40936E9B2C31F95600E7541C /* DecimalNumberButton.swift in Sources */,
+				402C2CC32C3266230098F4CC /* CalculatorViewModel.swift in Sources */,
 				40936E9D2C3207D700E7541C /* NumberButtonStyle.swift in Sources */,
 				40936E6F2C31E94E00E7541C /* ConvexApp.swift in Sources */,
+				402C2CC12C3258C20098F4CC /* CalculatorModel.swift in Sources */,
 				40936EA32C3213FC00E7541C /* Base.swift in Sources */,
 				40936EA12C32102600E7541C /* HexNumberButton.swift in Sources */,
 			);
@@ -483,6 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Convex/Preview Content\"";
@@ -494,6 +515,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -516,6 +538,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Convex/Preview Content\"";
@@ -527,6 +550,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

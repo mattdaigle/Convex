@@ -8,12 +8,12 @@
 import SwiftUI
 
 @Observable
-class NumberButtonViewModel {
+final class NumberButtonViewModel {
     
-    let value: Int
+    let value: UInt
     let title: String
 
-    init(value: Int) {
+    init(value: UInt) {
         self.value = value
         self.title = String(format:"%X", value)
     }

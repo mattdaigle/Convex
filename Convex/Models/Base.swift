@@ -26,16 +26,20 @@ enum Base: CaseIterable {
         }
     }
     
-    var values: [Int] {
+    var values: [UInt] {
+        return Array(0..<radixValue)
+    }
+    
+    var radixValue: UInt {
         switch self {
         case .binary:
-            [0, 1]
+            2
         case .octal:
-            [0, 1, 2, 3, 4, 5, 6, 7]
+            8
         case .decimal:
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+            10
         case .hex:
-            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF]
+            16
         }
     }
 }

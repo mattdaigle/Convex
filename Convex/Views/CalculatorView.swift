@@ -8,15 +8,8 @@
 import SwiftUI
 
 struct CalculatorView: View {
-    
-    private let numbers = [
-        [7, 8,   9,   0xF],
-        [4, 5,   6,   0xE],
-        [1, 2,   3,   0xD],
-        [0, 0xA, 0xB, 0xC]
-    ]
-    
-    @State private var selectedBase: Base = .hex
+
+    @State private var viewModel = ViewModel()
 
     var body: some View {
         ZStack {
@@ -25,18 +18,20 @@ struct CalculatorView: View {
             
             VStack {
                 Spacer()
+                nonBinaryLabel
                 basePicker
                 numberButtons
             }
         }
     }
     
+    private var nonBinaryLabel: some View {
+        Text("")
+    }
+    
     private var basePicker: some View {
-        Picker("Base", selection: $selectedBase) {
-            ForEach(Base.allCases, id: \.self) { base in
-                Text(base.title)
-                    .font(.system(.title))
-            }
+        Picker("Base", selection: $viewModel.selectedBase) {
+            ForEach(viewModel.bases, id: \.self) { Text($0.title) }
         }
         .pickerStyle(.segmented)
         .padding(.horizontal)
@@ -44,15 +39,17 @@ struct CalculatorView: View {
     
     private var numberButtons: some View {
         Grid(horizontalSpacing: 0, verticalSpacing: 0) {
-            ForEach(0..<numbers.count, id: \.self) { row in
+            ForEach(0..<viewModel.numbersRowCount, id: \.self) { row in
                 GridRow {
-                    ForEach(0..<numbers[row].count, id: \.self) { column in
-                        let value = numbers[row][column]
-                        let isEnabled = selectedBase.values.contains(value)
-                        
-                        numberButton(for: value)
-                            .disabled(!isEnabled)
-                            .opacity(isEnabled ? 1 : 0.1)
+                    ForEach(0..<viewModel.numbersColumnCount, id: \.self) { column in
+                        if let value = viewModel.valueFor(row: row, column: column) {
+                            let isEnabled = viewModel.isValueEnabled(value)
+                            numberButton(for: value)
+                                .disabled(!isEnabled)
+                                .opacity(isEnabled ? 1 : 0.1)
+                        } else {
+                            EmptyView()
+                        }
                     }
                 }
             }
@@ -61,13 +58,11 @@ struct CalculatorView: View {
     }
     
     @ViewBuilder
-    private func numberButton(for value: Int) -> some View {
-        let viewModel = NumberButtonViewModel(value: value)
-        
-        if Base.decimal.values.contains(value) {
-            DecimalNumberButton(viewModel: viewModel)
+    private func numberButton(for value: UInt) -> some View {
+        if viewModel.isDecimal(value: value) {
+            DecimalNumberButton(viewModel: .init(value: value))
         } else {
-            HexNumberButton(viewModel: viewModel)
+            HexNumberButton(viewModel: .init(value: value))
         }
     }
 }
