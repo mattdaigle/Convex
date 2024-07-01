@@ -27,6 +27,8 @@ struct NumberButtonStyle: ButtonStyle {
             .background(backgroundColor)
             .foregroundStyle(Color.Theme.foreground)
             .clipShape(Circle())
+            .opacity(configuration.isPressed ? 0.3 : 1)
+        
             .padding(6)
     }
 }
