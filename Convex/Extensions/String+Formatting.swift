@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    
+
     func groupedBy(_ groupSize: Int, separator: Character = " ") -> String {
         let characterArray = enumerated().flatMap { index, value in
             if index > 0 && index % groupSize == 0 {
@@ -17,7 +17,7 @@ extension String {
                 return [value]
             }
         }
-        
+
         return String(characterArray)
     }
 }

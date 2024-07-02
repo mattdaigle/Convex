@@ -12,7 +12,7 @@ enum Base: CaseIterable {
     case octal
     case decimal
     case hex
-    
+
     init?(string: String) {
         for base in Base.allCases {
             if base == .decimal {
@@ -27,10 +27,10 @@ enum Base: CaseIterable {
                 return
             }
         }
-        
+
         return nil
     }
-    
+
     var title: String {
         switch self {
         case .binary:
@@ -43,11 +43,11 @@ enum Base: CaseIterable {
             "hex"
         }
     }
-    
+
     var values: [UInt] {
         return Array(0..<UInt(radix))
     }
-    
+
     var radix: Int {
         switch self {
         case .binary:
@@ -60,7 +60,7 @@ enum Base: CaseIterable {
             16
         }
     }
-    
+
     var prefix: String {
         switch self {
         case .binary:
@@ -73,7 +73,7 @@ enum Base: CaseIterable {
             "0x"
         }
     }
-    
+
     static func radix(forPrefix prefix: String) -> Int {
         let base = allCases.first(where: { $0.prefix == prefix }) ?? .decimal
         return base.radix

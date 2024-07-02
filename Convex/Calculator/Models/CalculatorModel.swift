@@ -8,7 +8,7 @@
 import Foundation
 
 struct CalculatorModel {
-
+    
     let bases = Base.allCases
     let operations = Operation.allCases.filter { $0 != .ones }
     let numbers: [[UInt]] = [

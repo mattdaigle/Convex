@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct OperationButton: View {
-    
+
     @State var viewModel: ViewModel
     @State private var width: CGFloat = .zero
     let action: () -> Void
-    
+
     var body: some View {
         Button {
             action()

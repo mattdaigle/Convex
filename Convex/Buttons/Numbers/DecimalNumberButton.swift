@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DecimalNumberButton: View {
-    
+
     @State var viewModel: NumberButtonViewModel
     @State private var width: CGFloat = .zero
     let action: () -> Void
-    
+
     var body: some View {
         Button {
             action()

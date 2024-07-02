@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct OperationButtonStyle: ButtonStyle {
-    
+
     let size: Double
-    
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(size: CGFloat(size / 3), weight: .bold).monospaced())

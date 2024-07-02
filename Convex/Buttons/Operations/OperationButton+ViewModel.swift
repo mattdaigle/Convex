@@ -8,9 +8,9 @@
 import SwiftUI
 
 extension OperationButton {
-    
+
     final class ViewModel {
-        
+
         let operation: Operation
         let title: String
 
