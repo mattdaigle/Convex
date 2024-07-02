@@ -9,7 +9,7 @@ import SwiftUI
 
 extension CalculatorView {
 
-    final class ViewModel: ObservableObject {
+    @Observable final class ViewModel: ObservableObject {
 
         private var model = CalculatorModel()
         private var currentValue: UInt = 0 {
@@ -17,8 +17,8 @@ extension CalculatorView {
                 updateDisplayValue()
             }
         }
-        @Published var displayValue: String = "0x0"
-        @Published var selectedBase: Base = .hex {
+        var displayValue: String = "0x0"
+        var selectedBase: Base = .hex {
             didSet {
                 updateDisplayValue()
             }
