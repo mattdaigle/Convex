@@ -7,11 +7,8 @@
 
 import Foundation
 
-@Observable
-final class CalculatorModel {
-    
-    private(set) var currentValue: UInt = 0
-    private(set) var currentBase: Base = .hex
+struct CalculatorModel {
+
     let bases = Base.allCases
     let operations = Operations.allCases.filter { $0 != .ones }
     let numbers: [[UInt]] = [
@@ -20,45 +17,30 @@ final class CalculatorModel {
         [1, 2,   3,   0xD],
         [0, 0xA, 0xB, 0xC]
     ]
-    private var radix: UInt {
-        UInt(currentBase.radix)
-    }
     
     // MARK: - Actions
     
-    func updateBaseValue(to base: Base) {
-        currentBase = base
-    }
-    
-    func append(_ digit: UInt) {
-        guard currentValue > 0 || digit > 0 else {
-            return
-        }
-                
-        // Check for overflow.
-        guard currentValue == 0 || UInt.max / currentValue >= radix else {
-            return
-        }
-        guard UInt.max - currentValue * radix >= digit else {
-            return
+    func append(_ digit: UInt, to value: UInt, radix: Int) -> UInt {
+        guard value > 0 || digit > 0 else {
+            return value
         }
         
-        currentValue = currentValue * radix + digit
+        // Check for overflow.
+        guard value == 0 || UInt.max / value >= UInt(radix) else {
+            return value
+        }
+        guard UInt.max - value * UInt(radix) >= digit else {
+            return value
+        }
+        
+        return value * UInt(radix) + digit
     }
     
-    func removeLeastSignificantDigit() {
-        currentValue = currentValue / radix
+    func removeLeastSignificantDigit(from value: UInt, radix: Int) -> UInt {
+        value / UInt(radix)
     }
     
-    func paste(value: UInt) {
-        currentValue = value
-    }
-    
-    func clear() {
-        currentValue = 0
-    }
-    
-    func perform(_ operation: Operations) {
-        currentValue = operation.function(currentValue)
+    func perform(_ operation: Operations, on value: UInt) -> UInt {
+        operation.function(value)
     }
 }

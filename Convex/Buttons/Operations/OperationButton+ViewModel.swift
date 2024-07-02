@@ -9,7 +9,6 @@ import SwiftUI
 
 extension OperationButton {
     
-    @Observable
     final class ViewModel {
         
         let operation: Operations

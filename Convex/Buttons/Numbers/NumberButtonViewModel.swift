@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@Observable
 final class NumberButtonViewModel {
     
     let value: UInt

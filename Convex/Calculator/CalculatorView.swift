@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalculatorView: View {
 
-    @State private var viewModel = ViewModel()
+    @StateObject private var viewModel = ViewModel()
     @State private var numberFontSize: CGFloat = .zero
     private let pasteboardChangedPublisher = NotificationCenter.default.publisher(for: UIPasteboard.changedNotification)
     @State private var canPaste = false
