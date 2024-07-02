@@ -1,5 +1,5 @@
 //
-//  HexNumberButton.swift
+//  DecimalNumberButton.swift
 //  Convex
 //
 //  Created by Matt Daigle on 6/30/24.
@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-struct HexNumberButton: View {
+struct DecimalNumberButton: View {
     
-    var viewModel: NumberButtonViewModel
-    @State var width: CGFloat = .zero
+    @State var viewModel: NumberButtonViewModel
+    @State private var width: CGFloat = .zero
+    let action: () -> Void
     
     var body: some View {
         Button {
-            print("\(viewModel.value) button pressed")
+            action()
         } label: {
             Text(viewModel.title)
                 .frame(maxWidth: .infinity)
@@ -23,10 +24,10 @@ struct HexNumberButton: View {
                     width = size.width
                 }
         }
-        .buttonStyle(NumberButtonStyle(base: .hex, size: width))
+        .buttonStyle(NumberButtonStyle(base: .decimal, size: width))
     }
 }
 
 #Preview {
-    HexNumberButton(viewModel: .init(value: 0xA))
+    DecimalNumberButton(viewModel: .init(value: 9), action: {})
 }

@@ -11,6 +11,11 @@
 		402C2CC12C3258C20098F4CC /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C2CC02C3258C20098F4CC /* CalculatorModel.swift */; };
 		402C2CC32C3266230098F4CC /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402C2CC22C3266230098F4CC /* CalculatorViewModel.swift */; };
 		402C2CC62C32727B0098F4CC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 402C2CC52C32727B0098F4CC /* Launch Screen.storyboard */; };
+		4080C7A02C3302AF005AF9DD /* OperationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080C79F2C3302AF005AF9DD /* OperationButton.swift */; };
+		4080C7A22C3302E9005AF9DD /* OperationButton+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080C7A12C3302E9005AF9DD /* OperationButton+ViewModel.swift */; };
+		4080C7A42C33037E005AF9DD /* OperationButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080C7A32C33037E005AF9DD /* OperationButtonStyle.swift */; };
+		4080C7A62C3303B2005AF9DD /* Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080C7A52C3303B2005AF9DD /* Operations.swift */; };
+		4080C7A92C33177F005AF9DD /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4080C7A82C33177F005AF9DD /* String+Formatting.swift */; };
 		40936E6F2C31E94E00E7541C /* ConvexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40936E6E2C31E94E00E7541C /* ConvexApp.swift */; };
 		40936E712C31E94E00E7541C /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40936E702C31E94E00E7541C /* CalculatorView.swift */; };
 		40936E732C31E94F00E7541C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40936E722C31E94F00E7541C /* Assets.xcassets */; };
@@ -47,6 +52,11 @@
 		402C2CC02C3258C20098F4CC /* CalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = "<group>"; };
 		402C2CC22C3266230098F4CC /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
 		402C2CC52C32727B0098F4CC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		4080C79F2C3302AF005AF9DD /* OperationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationButton.swift; sourceTree = "<group>"; };
+		4080C7A12C3302E9005AF9DD /* OperationButton+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OperationButton+ViewModel.swift"; sourceTree = "<group>"; };
+		4080C7A32C33037E005AF9DD /* OperationButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationButtonStyle.swift; sourceTree = "<group>"; };
+		4080C7A52C3303B2005AF9DD /* Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operations.swift; sourceTree = "<group>"; };
+		4080C7A82C33177F005AF9DD /* String+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Formatting.swift"; sourceTree = "<group>"; };
 		40936E6B2C31E94E00E7541C /* Convex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Convex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40936E6E2C31E94E00E7541C /* ConvexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvexApp.swift; sourceTree = "<group>"; };
 		40936E702C31E94E00E7541C /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
@@ -93,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				402C2CB72C3246EE0098F4CC /* View+LayoutChanges.swift */,
+				4080C7A82C33177F005AF9DD /* String+Formatting.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -102,18 +113,19 @@
 			children = (
 				402C2CC02C3258C20098F4CC /* CalculatorModel.swift */,
 				40936EA22C3213FC00E7541C /* Base.swift */,
+				4080C7A52C3303B2005AF9DD /* Operations.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		402C2CBB2C3247200098F4CC /* Views */ = {
+		402C2CBB2C3247200098F4CC /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
 				40936E702C31E94E00E7541C /* CalculatorView.swift */,
 				402C2CC22C3266230098F4CC /* CalculatorViewModel.swift */,
-				402C2CC42C3266350098F4CC /* Buttons */,
+				402C2CBA2C32470B0098F4CC /* Models */,
 			);
-			path = Views;
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 		402C2CBC2C3247700098F4CC /* Resources */ = {
@@ -136,12 +148,31 @@
 		402C2CC42C3266350098F4CC /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				4080C79E2C330219005AF9DD /* Operations */,
+				4080C79D2C330203005AF9DD /* Numbers */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		4080C79D2C330203005AF9DD /* Numbers */ = {
+			isa = PBXGroup;
+			children = (
 				40936E9A2C31F95600E7541C /* DecimalNumberButton.swift */,
 				40936EA02C32102600E7541C /* HexNumberButton.swift */,
 				40936E982C31F54600E7541C /* NumberButtonViewModel.swift */,
 				40936E9C2C3207D700E7541C /* NumberButtonStyle.swift */,
 			);
-			path = Buttons;
+			path = Numbers;
+			sourceTree = "<group>";
+		};
+		4080C79E2C330219005AF9DD /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				4080C79F2C3302AF005AF9DD /* OperationButton.swift */,
+				4080C7A12C3302E9005AF9DD /* OperationButton+ViewModel.swift */,
+				4080C7A32C33037E005AF9DD /* OperationButtonStyle.swift */,
+			);
+			path = Operations;
 			sourceTree = "<group>";
 		};
 		40936E622C31E94E00E7541C = {
@@ -168,8 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				402C2CBD2C3247840098F4CC /* App */,
-				402C2CBB2C3247200098F4CC /* Views */,
-				402C2CBA2C32470B0098F4CC /* Models */,
+				402C2CBB2C3247200098F4CC /* Calculator */,
+				402C2CC42C3266350098F4CC /* Buttons */,
 				402C2CBC2C3247700098F4CC /* Resources */,
 				402C2CB92C3246F50098F4CC /* Extensions */,
 				40936E742C31E94F00E7541C /* Preview Content */,
@@ -333,11 +364,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4080C7A02C3302AF005AF9DD /* OperationButton.swift in Sources */,
 				402C2CB82C3246EE0098F4CC /* View+LayoutChanges.swift in Sources */,
 				40936E992C31F54600E7541C /* NumberButtonViewModel.swift in Sources */,
+				4080C7A62C3303B2005AF9DD /* Operations.swift in Sources */,
+				4080C7A92C33177F005AF9DD /* String+Formatting.swift in Sources */,
 				40936E712C31E94E00E7541C /* CalculatorView.swift in Sources */,
+				4080C7A42C33037E005AF9DD /* OperationButtonStyle.swift in Sources */,
 				40936E9B2C31F95600E7541C /* DecimalNumberButton.swift in Sources */,
 				402C2CC32C3266230098F4CC /* CalculatorViewModel.swift in Sources */,
+				4080C7A22C3302E9005AF9DD /* OperationButton+ViewModel.swift in Sources */,
 				40936E9D2C3207D700E7541C /* NumberButtonStyle.swift in Sources */,
 				40936E6F2C31E94E00E7541C /* ConvexApp.swift in Sources */,
 				402C2CC12C3258C20098F4CC /* CalculatorModel.swift in Sources */,
@@ -527,9 +563,13 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattxdaigle.Convex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -562,9 +602,13 @@
 				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mattxdaigle.Convex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

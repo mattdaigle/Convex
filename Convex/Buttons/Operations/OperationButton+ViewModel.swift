@@ -1,0 +1,23 @@
+//
+//  OperationButton+ViewModel.swift
+//  Convex
+//
+//  Created by Matt Daigle on 6/30/24.
+//
+
+import SwiftUI
+
+extension OperationButton {
+    
+    @Observable
+    final class ViewModel {
+        
+        let operation: Operations
+        let title: String
+
+        init(operation: Operations) {
+            self.operation = operation
+            self.title = operation.title
+        }
+    }
+}
