@@ -15,6 +15,7 @@ struct SizePreferenceKey: PreferenceKey {
 }
 
 extension View {
+
     func onSizeChange(perform action: @escaping (CGSize) -> Void) -> some View {
         background(
             GeometryReader { geometry in

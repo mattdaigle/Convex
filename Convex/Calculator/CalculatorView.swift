@@ -18,7 +18,7 @@ struct CalculatorView: View {
         ZStack {
             Color.Theme.black
                 .ignoresSafeArea()
-            
+
             VStack(alignment: .trailing, spacing: 10) {
                 numberView
                 basePicker
@@ -30,7 +30,7 @@ struct CalculatorView: View {
             canPaste = viewModel.canPaste
         }
     }
-    
+
     @ViewBuilder
     private var numberView: some View {
         Menu {
@@ -39,7 +39,7 @@ struct CalculatorView: View {
             } label: {
                 Label("Copy", systemImage: "doc.on.doc")
             }
-            
+
             if canPaste {
                 Button {
                     viewModel.paste()
@@ -47,7 +47,7 @@ struct CalculatorView: View {
                     Label("Paste", systemImage: "doc.on.clipboard")
                 }
             }
-            
+
             Button(role: .destructive) {
                 viewModel.clear()
             } label: {
@@ -77,7 +77,7 @@ struct CalculatorView: View {
                 }
         )
     }
-    
+
     private var binaryNumber: some View {
         VStack(spacing: 30) {
             let binaryStrings = viewModel.displayValue.split(separator: "\n").map { String($0) }
@@ -103,7 +103,7 @@ struct CalculatorView: View {
             }
         }
     }
-    
+
     private var basePicker: some View {
         Picker("Base", selection: $viewModel.selectedBase) {
             ForEach(viewModel.bases, id: \.self) { Text($0.title) }
@@ -111,7 +111,7 @@ struct CalculatorView: View {
         .pickerStyle(.segmented)
         .padding(.horizontal, 12)
     }
-    
+
     private var buttons: some View {
         Grid(horizontalSpacing: 0, verticalSpacing: 0) {
             // Operators.
@@ -123,7 +123,7 @@ struct CalculatorView: View {
                     OperationButton(viewModel: .init(operation: operation), action: action)
                 }
             }
-            
+
             // Numbers.
             ForEach(0..<viewModel.numbersRowCount, id: \.self) { row in
                 GridRow {
@@ -142,13 +142,13 @@ struct CalculatorView: View {
         }
         .padding(6)
     }
-    
+
     @ViewBuilder
     private func numberButton(for value: UInt) -> some View {
         let action = {
             viewModel.append(value)
         }
-        
+
         if viewModel.isDecimal(value: value) {
             DecimalNumberButton(viewModel: .init(value: value), action: action)
         } else {

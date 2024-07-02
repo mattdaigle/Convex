@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct NumberButtonStyle: ButtonStyle {
-    
+
     let base: Base
     let size: Double
-    
+
     private var backgroundColor: Color {
         switch base {
         case .hex:
@@ -20,7 +20,7 @@ struct NumberButtonStyle: ButtonStyle {
             .Theme.background
         }
     }
-    
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(size: CGFloat(size / 2)).monospaced())

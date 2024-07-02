@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class NumberButtonViewModel {
-    
+
     let value: UInt
     let title: String
 
