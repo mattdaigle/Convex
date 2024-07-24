@@ -11,6 +11,14 @@ struct CalculatorView: View {
 
     @State private var viewModel = ViewModel()
 
+    init() {
+        let font = UIFont.monospacedSystemFont(ofSize: 16, weight: .heavy)
+        UISegmentedControl.appearance().backgroundColor = UIColor(.Theme.background)
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(.Theme.foreground)
+        UISegmentedControl.appearance().setTitleTextAttributes([.font: font, .foregroundColor: UIColor(.Theme.currentLine)], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.font: font, .foregroundColor: UIColor(.Theme.foreground)], for: .normal)
+    }
+
     var body: some View {
         ZStack {
             Color.Theme.black
@@ -99,7 +107,9 @@ struct CalculatorView: View {
 
     private var basePicker: some View {
         Picker("Base", selection: $viewModel.selectedBase) {
-            ForEach(viewModel.bases, id: \.self) { Text($0.title) }
+            ForEach(viewModel.bases, id: \.self) { base in
+                Text(base.title)
+            }
         }
         .pickerStyle(.segmented)
         .padding(.horizontal, 12)
