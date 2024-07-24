@@ -10,9 +10,6 @@ import SwiftUI
 struct CalculatorView: View {
 
     @State private var viewModel = ViewModel()
-    @State private var numberFontSize: CGFloat = .zero
-    private let pasteboardChangedPublisher = NotificationCenter.default.publisher(for: UIPasteboard.changedNotification)
-    @State private var canPaste = false
 
     var body: some View {
         ZStack {
@@ -26,12 +23,8 @@ struct CalculatorView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .onReceive(pasteboardChangedPublisher) { _ in
-            canPaste = viewModel.canPaste
-        }
     }
 
-    @ViewBuilder
     private var numberView: some View {
         Menu {
             Button {
@@ -40,7 +33,7 @@ struct CalculatorView: View {
                 Label("Copy", systemImage: "doc.on.doc")
             }
 
-            if canPaste {
+            if viewModel.canPaste {
                 Button {
                     viewModel.paste()
                 } label: {

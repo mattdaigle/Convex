@@ -5,13 +5,18 @@
 //  Created by Matt Daigle on 7/1/24.
 //
 
+import Combine
 import SwiftUI
 
 extension CalculatorView {
 
-    @Observable final class ViewModel: ObservableObject {
+    @Observable
+    final class ViewModel: ObservableObject {
+
+        // MARK: - Properties
 
         private var model = CalculatorModel()
+
         private var currentValue: UInt = 0 {
             didSet {
                 updateDisplayValue()
@@ -48,9 +53,22 @@ extension CalculatorView {
             return UInt(pasteboardString.trimmingPrefix(base.prefix), radix: base.radix)
         }
 
-        var canPaste: Bool {
-            pasteboardValue != nil
+        private(set) var canPaste = false
+
+        private var cancellables = Set<AnyCancellable>()
+
+        // MARK: - Initializers
+
+        init() {
+            NotificationCenter.default.publisher(for: UIPasteboard.changedNotification)
+                .sink { [weak self] _ in
+                    guard let self else { return }
+                    self.canPaste = self.pasteboardValue != nil
+                }
+                .store(in: &cancellables)
         }
+
+        // MARK: - UI Interpretation
 
         func isDecimal(value: UInt) -> Bool {
             Base.decimal.values.contains(value)
